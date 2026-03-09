@@ -60,7 +60,7 @@ Part of a broader personal brand infrastructure under the **Notch64** identity, 
 Related projects:
 - `vicegamers.com` — Django/Python community site
 - `vicecreators.com` — Django/Python community site
-- `notch64.com` — Static HTML hub linking all properties
+- `notch64.com` — PHP(Laravel) App that links all properties
 
 ---
 
