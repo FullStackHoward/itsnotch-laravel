@@ -1,59 +1,94 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ItsNotch.com
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Live music portfolio and storefront for Notch64** — a DMV-based music producer specializing in instrumentals, music kits, audio logos, and indents for gaming, TV, and film. Built as a full Laravel application replacing a legacy WordPress site.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tech Stack
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Backend:** PHP 8.4 / Laravel 12
+- **Admin Panel:** Filament v3
+- **Database:** MySQL
+- **Frontend:** Blade templating, vanilla JavaScript, custom CSS
+- **Storage:** Laravel filesystem with public disk
+- **Color Extraction:** `league/color-extractor`
+- **Deployment Target:** AlmaLinux / Apache / cPanel (Linode VPS)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Public Frontend
+- Fully responsive music storefront built from a custom Figma design
+- N64 retro gaming visual theme with animated cloud strip, gradient layout, and pixel art assets
+- Audio player with play/pause toggle, real-time progress bar, and seek functionality built in vanilla JavaScript with no dependencies
+- Track cards with dynamically extracted dominant color applied as a translucent CSS overlay bar, matching the cover art palette automatically on upload
+- Filter system for Genre, Sub-Genre, Mood, and Type — all populated dynamically from database values, no hardcoded options
+- Clickable tag links on each track that apply filters and reflect the active pill state at the top of the page
+- Free tracks serve a direct download via a protected Laravel route
+- Paid tracks display a preview clip and route users to Patreon via a single globally configured URL
+- Music Packs section with three states: Download, Patreon Only, and Coming Soon
+- Paginated track list (6 per page) and paginated music packs (3 per page) with shared pagination partial
+- Latest YouTube video embed with smart URL normalization — accepts full watch URLs, short URLs, embed URLs, or bare video IDs
+- Full SEO meta suite including Open Graph, Twitter/X Card, geographic meta, and canonical URL
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Admin Panel (Filament v3)
+- Track management with file uploads for cover art, full audio, and preview clips
+- TagsInput fields for Genre, Sub-Genre, Mood, and Type with live database-driven suggestions
+- Automatic dominant color extraction on track save via model observer
+- Pack management with conditional form fields based on selected status
+- Site Settings for global Patreon URL and YouTube video URL managed in one place
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Architecture Decisions
 
-### Premium Partners
+**Single Patreon URL as a site setting** — Rather than storing a Patreon URL per track, a single global value is managed in Site Settings and applied to all paid tracks automatically.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+**Preview files instead of DRM** — Paid tracks store a separate preview audio file rather than encrypting or token-gating the full file, eliminating server-side complexity while still protecting full track access.
 
-## Contributing
+**Comma-separated tag storage with array casting** — Genre, Sub-Genre, Mood, and Type are stored as comma-separated strings and cast to arrays via the Track model, keeping the schema simple while supporting multi-value filtering.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**CSS color overlay via pseudo-element** — The translucent colored bar on each track's cover art uses a `::before` pseudo-element with `opacity` rather than setting opacity on the parent, keeping child text and images fully opaque while the background remains translucent.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Local Development
+```bash
+git clone <repo>
+cd itsnotch-laravel
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan storage:link
+php artisan serve
+```
 
-## Security Vulnerabilities
+Create an admin user:
+```bash
+php artisan make:filament-user
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Frontend: `http://localhost:8000`
+Admin panel: `http://localhost:8000/admin`
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## Project Context
+
+Part of a broader personal brand infrastructure under the **Notch64** identity, spanning music production, gaming community (Vice Gamers), and creative community (Vice Creators). ItsNotch.com replaces BigNotch.com as the primary music home and Patreon funnel.
+
+Related projects:
+- `vicegamers.com` — Django/Python community site
+- `vicecreators.com` — Django/Python community site
+- `notch64.com` — Static HTML hub linking all properties
+
+---
+
+## Author
+
+Built by **Howard** (FullStackHoward) — full-stack developer and DevOps engineer with a background in front-end development and digital marketing. Currently pursuing a Master's in DevOps and AWS certification.
+
+- Portfolio: [howard.codes](https://howard.codes)
