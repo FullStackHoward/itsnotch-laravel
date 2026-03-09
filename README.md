@@ -53,29 +53,6 @@
 
 ---
 
-## Local Development
-```bash
-git clone <repo>
-cd itsnotch-laravel
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate --seed
-php artisan storage:link
-php artisan serve
-```
-
-Create an admin user:
-```bash
-php artisan make:filament-user
-```
-
-Frontend: `http://localhost:8000`
-Admin panel: `http://localhost:8000/admin`
-
-
----
-
 ## Project Context
 
 Part of a broader personal brand infrastructure under the **Notch64** identity, spanning music production, gaming community (Vice Gamers), and creative community (Vice Creators). ItsNotch.com replaces BigNotch.com as the primary music home and Patreon funnel.
