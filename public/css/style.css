@@ -1,0 +1,795 @@
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+    background: #FFAB63;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+    position: relative;
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Push content up, leaving room for the 67px cloud strip at the bottom */
+    padding-bottom: 67px;
+    overflow: hidden;
+}
+
+/* Background image */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('../img/n64-header-bg.jpg') center center / cover no-repeat;
+    z-index: 0;
+}
+
+/* Content layer */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 24px;
+}
+
+.hero-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 64pt;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.35);
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.hero-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    margin-bottom: 12px;
+}
+
+.hero-avatar {
+    width: 180px;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 2;
+    margin-bottom: -20px;
+}
+
+/* ===== Clouds ===== */
+.clouds-container {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 67px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.clouds-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-clouds 60s linear infinite;
+}
+
+.cloud-strip {
+    display: block;
+    height: 67px;
+    width: auto;
+    /* Negative margin creates the 10px overlap */
+    margin-right: -10px;
+    flex-shrink: 0;
+}
+
+@keyframes scroll-clouds {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Move by exactly 2 strip widths (accounting for overlaps) so the loop is seamless.
+           Each strip is 600.5px wide, minus 10px overlap = ~590.5px effective.
+           We shift by 2 strips worth so the second half mirrors the first. */
+        transform: translateX(calc(-600.5px * 2 + 20px));
+    }
+}
+
+/* ===== Gradient Wrapper ===== */
+.gradient-wrap {
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #ffffff 60%,
+        #96D8FF 75%,
+        #FFAB63 90%,
+        #FFAB63 100%
+    );
+}
+
+/* ===== Social Section ===== */
+.social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px 28px;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 14px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.15);
+    opacity: 0.75;
+}
+
+.social-icons img {
+    width: 44px;
+    height: 44px;
+    display: block;
+}
+
+/* SoundCloud's artwork sits in a 48×48 canvas and is visually smaller;
+   scale it up so it matches the apparent size of the 40×40 icons. */
+.social-icons a[aria-label="SoundCloud"] img {
+    width: 58px;
+    height: 58px;
+}
+
+.social-tagline {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.15rem;
+    color: #aaa;
+    letter-spacing: 0.5px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 2.4rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .hero-avatar {
+        width: 140px;
+    }
+
+    .track-card {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .track-action {
+        align-self: center;
+    }
+
+    .filter-group {
+        justify-content: center;
+    }
+
+    .pills {
+        justify-content: center;
+    }
+
+    .filter-label {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+/* ===== Latest Music Section ===== */
+.latest-music {
+    padding: 48px 24px 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.section-divider {
+    width: 220px;
+    height: 3px;
+    background: #1a1a1a;
+    margin-bottom: 36px;
+}
+
+/* Track card */
+.track-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 720px;
+    padding: 14px 0;
+}
+
+.track-artwork {
+    flex-shrink: 0;
+}
+
+.artwork-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ccc 0%, #e8e8e8 100%);
+}
+
+.track-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.track-meta {
+    margin-bottom: 8px;
+}
+
+.track-title {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #1a1a1a;
+    margin-bottom: 3px;
+}
+
+.track-tags {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.tag-link {
+    color: #999;
+    text-decoration: none;
+}
+
+.tag-link:hover {
+    text-decoration: underline;
+}
+
+/* Placeholder player */
+.track-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.play-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+    padding: 0 0 0 2px;
+    line-height: 1;
+}
+
+.play-btn:hover {
+    background: #444;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    overflow: visible;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #1a1a1a;
+    border-radius: 2px;
+}
+
+/* Action button */
+.btn-action {
+    flex-shrink: 0;
+    display: inline-block;
+    padding: 10px 22px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #fff;
+    background: #1a1a1a;
+    border: 2px solid #1a1a1a;
+    border-radius: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 2px 3px 0 rgba(0,0,0,0.25);
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-action:hover {
+    background: transparent;
+    color: #1a1a1a;
+}
+
+/* Divider between tracks */
+.track-divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    max-width: 720px;
+    margin: 4px 0;
+}
+
+/* ===== Filter Pills ===== */
+.filter-group-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 720px;
+    margin-bottom: 32px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.filter-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #888;
+    min-width: 72px;
+    width: 72px;
+    flex-shrink: 0;
+    padding-top: 6px;
+}
+
+.pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+@media (max-width: 600px) {
+    .filter-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .filter-label {
+        width: auto;
+        min-width: unset;
+        padding-top: 0;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .pills {
+        justify-content: center;
+    }
+}
+
+.pill {
+    padding: 6px 16px;
+    border-radius: 999px;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.pill:hover {
+    opacity: 0.75;
+    transform: scale(1.05);
+}
+
+/* Genre — black */
+.pill--genre {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.pill--genre.active {
+    background: #1a1a1a;
+    outline: 2px solid #555;
+    outline-offset: 2px;
+}
+
+/* Sub-genre — dark gray */
+.pill--subgenre {
+    background: #555;
+    color: #fff;
+}
+
+.pill--subgenre.active {
+    background: #555;
+    outline: 2px solid #888;
+    outline-offset: 2px;
+}
+
+/* Mood — light gray */
+.pill--mood {
+    background: #bbb;
+    color: #1a1a1a;
+}
+
+.pill--mood.active {
+    background: #bbb;
+    outline: 2px solid #999;
+    outline-offset: 2px;
+}
+
+/* Type — lightest gray */
+.pill--type {
+    background: #e0e0e0;
+    color: #1a1a1a;
+}
+
+.pill--type.active {
+    background: #e0e0e0;
+    outline: 2px solid #bbb;
+    outline-offset: 2px;
+}
+
+/* ===== Pagination ===== */
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 36px;
+}
+
+.page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 10px;
+    border-radius: 6px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    background: #f0f0f0;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.page-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.page-btn.active {
+    background: #1a1a1a;
+    color: #fff;
+    pointer-events: none;
+}
+
+.page-btn--prev,
+.page-btn--next {
+    font-size: 1.1rem;
+    background: #f0f0f0;
+}
+
+.page-ellipsis {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #aaa;
+    padding: 0 4px;
+    user-select: none;
+}
+
+/* ===== Music Packs & Latest Video ===== */
+.packs-video {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding: 52px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.packs-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    color: #1a1a1a;
+    margin-bottom: 24px;
+}
+
+/* Pack items */
+.pack-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.artwork-placeholder--sm {
+    width: 150px;
+    height: 150px;
+    border-radius: 6px;
+}
+
+.pack-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.pack-name {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #1a1a1a;
+}
+
+.pack-link {
+    display: inline-block;
+    padding: 6px 14px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: #fff;
+    background: #1a1a1a;
+    border: 2px solid #1a1a1a;
+    border-radius: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 2px 3px 0 rgba(0,0,0,0.25);
+    transition: background 0.2s, color 0.2s;
+}
+
+.pack-link:hover {
+    background: #333;
+    color: #fff;
+}
+
+.pack-link--patron {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #fff;
+}
+
+.pack-link--coming-soon {
+    display: inline-block;
+    padding: 6px 14px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: #aaa;
+    white-space: nowrap;
+    cursor: default;
+}
+
+/* Video embed */
+.video-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.video-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .packs-video {
+        grid-template-columns: 1fr;
+        padding: 40px 24px;
+        gap: 40px;
+    }
+
+    .packs-col,
+    .video-col {
+        text-align: center;
+    }
+
+    .packs-title {
+        text-align: center;
+    }
+
+    .pack-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pack-info {
+        align-items: center;
+    }
+}
+
+/* ===== Footer ===== */
+.site-footer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.footer-text {
+    text-align: center;
+    padding: 32px 24px 16px;
+    z-index: 1;
+}
+
+.footer-copy {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    margin-bottom: 2px;
+}
+
+.footer-credit {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    color: #fff;
+    paint-order: stroke fill;
+    -webkit-text-stroke: 2px #000;
+    text-shadow: none;
+}
+
+.footer-landscape {
+    width: 100%;
+    line-height: 0;
+}
+
+.footer-landscape img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===== Cover Art Overlay ===== */
+.artwork-wrap {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: width 0.25s ease, height 0.25s ease;
+}
+
+.artwork-wrap:hover,
+.artwork-wrap:focus-within {
+    width: 200px;
+    height: 200px;
+}
+
+.artwork-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artwork-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 25%;
+    z-index: 2;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.artwork-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: inherit;
+    opacity: 1;
+}
+
+.artwork-overlay > * {
+    position: relative;
+    opacity: 1;
+}
+
+.overlay-brand {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 60px;
+    transform: translateY(-50%);
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: #fff;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+.overlay-brand sup {
+    font-size: 1rem;
+    vertical-align: super;
+}
+
+.cover-peel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: auto;
+    z-index: 3;
+    pointer-events: none;
+}

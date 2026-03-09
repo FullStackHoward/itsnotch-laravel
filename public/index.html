@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It's Notch! - Music by Notch64</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">It's Notch!</h1>
+            <p class="hero-subtitle">Music by Notch64</p>
+            <img src="img/n64-pixelface.png" alt="Notch64 pixel art avatar" class="hero-avatar">
+        </div>
+        <div class="clouds-container">
+            <div class="clouds-track">
+                <img src="img/cloudstrip.svg" alt="" class="cloud-strip" aria-hidden="true">
+                <img src="img/cloudstrip.svg" alt="" class="cloud-strip" aria-hidden="true">
+                <img src="img/cloudstrip.svg" alt="" class="cloud-strip" aria-hidden="true">
+                <img src="img/cloudstrip.svg" alt="" class="cloud-strip" aria-hidden="true">
+            </div>
+        </div>
+    </section>
+
+    <!-- Gradient wrapper: everything below hero -->
+    <div class="gradient-wrap">
+
+    <!-- Social Section -->
+    <section class="social">
+        <nav class="social-icons" aria-label="Social media links">
+            <a href="https://www.facebook.com/ItsNotch64/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <img src="img/fb.svg" alt="Facebook">
+            </a>
+            <a href="https://x.com/itsnotch64" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                <img src="img/x.svg" alt="X">
+            </a>
+            <a href="https://www.instagram.com/itsnotch64/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <img src="img/ig.svg" alt="Instagram">
+            </a>
+            <a href="https://www.youtube.com/@notch64" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <img src="img/yt.svg" alt="YouTube">
+            </a>
+            <a href="https://soundcloud.com/Notch64" target="_blank" rel="noopener noreferrer" aria-label="SoundCloud">
+                <img src="img/sc.svg" alt="SoundCloud">
+            </a>
+        </nav>
+        <p class="social-tagline">Instrumentals &ndash; SFX &ndash; Indents &ndash; Music Kits &ndash; Pixelwave</p>
+    </section>
+
+    <!-- Latest Music Section -->
+    <section class="latest-music">
+        <h2 class="section-title">Latest Music</h2>
+        <div class="section-divider"></div>
+
+        <!-- Filter Pills -->
+        <!-- {{-- dynamic: pills generated from Laravel categories --}} -->
+        <div class="filter-group-wrap">
+            <div class="filter-group">
+                <span class="filter-label">Genre</span>
+                <div class="pills">
+                    <button class="pill pill--genre active">All</button>
+                    <button class="pill pill--genre">Hip-Hop</button>
+                    <button class="pill pill--genre">Electronic</button>
+                    <button class="pill pill--genre">House</button>
+                    <button class="pill pill--genre">R&amp;B</button>
+                    <button class="pill pill--genre">Cinematic</button>
+                </div>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">Sub-Genre</span>
+                <div class="pills">
+                    <button class="pill pill--subgenre active">All</button>
+                    <button class="pill pill--subgenre">Trap</button>
+                    <button class="pill pill--subgenre">Chiptune</button>
+                    <button class="pill pill--subgenre">Lo-Fi</button>
+                    <button class="pill pill--subgenre">Drill</button>
+                    <button class="pill pill--subgenre">Synthwave</button>
+                </div>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">Mood</span>
+                <div class="pills">
+                    <button class="pill pill--mood active">All</button>
+                    <button class="pill pill--mood">Hype</button>
+                    <button class="pill pill--mood">Chill</button>
+                    <button class="pill pill--mood">Dark</button>
+                    <button class="pill pill--mood">Uplifting</button>
+                    <button class="pill pill--mood">Nostalgic</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Track Card 1 -->
+        <article class="track-card">
+            <div class="track-artwork">
+                <!-- {{-- dynamic: album art --}} -->
+                <div class="artwork-placeholder"></div>
+            </div>
+            <div class="track-info">
+                <div class="track-meta">
+                    <h3 class="track-title">Notch64 - Pixelwave</h3>
+                    <p class="track-tags">#pixelwave, #hiphop</p>
+                </div>
+                <div class="track-player">
+                    <!-- {{-- dynamic: audio player --}} -->
+                    <button class="play-btn" aria-label="Play">&#9654;</button>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+            </div>
+            <a href="#" class="track-action btn-action">Download &#8595;</a>
+        </article>
+
+        <hr class="track-divider">
+
+        <!-- Track Card 2 -->
+        <article class="track-card">
+            <div class="track-artwork">
+                <!-- {{-- dynamic: album art --}} -->
+                <div class="artwork-placeholder"></div>
+            </div>
+            <div class="track-info">
+                <div class="track-meta">
+                    <h3 class="track-title">Notch64 - Arcade</h3>
+                    <p class="track-tags">#trap, #chiptune</p>
+                </div>
+                <div class="track-player">
+                    <!-- {{-- dynamic: audio player --}} -->
+                    <button class="play-btn" aria-label="Play">&#9654;</button>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+            </div>
+            <a href="#" class="track-action btn-action">Subscribe &#8599;</a>
+        </article>
+
+        <hr class="track-divider">
+
+        <!-- Track Card 3 -->
+        <article class="track-card">
+            <div class="track-artwork">
+                <!-- {{-- dynamic: album art --}} -->
+                <div class="artwork-placeholder"></div>
+            </div>
+            <div class="track-info">
+                <div class="track-meta">
+                    <h3 class="track-title">Notch64 - Wings</h3>
+                    <p class="track-tags">#house, #electronic</p>
+                </div>
+                <div class="track-player">
+                    <!-- {{-- dynamic: audio player --}} -->
+                    <button class="play-btn" aria-label="Play">&#9654;</button>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+            </div>
+            <a href="#" class="track-action btn-action">Subscribe &#8599;</a>
+        </article>
+
+        <hr class="track-divider">
+
+        <!-- Track Card 4 -->
+        <article class="track-card">
+            <div class="track-artwork">
+                <!-- {{-- dynamic: album art --}} -->
+                <div class="artwork-placeholder"></div>
+            </div>
+            <div class="track-info">
+                <div class="track-meta">
+                    <h3 class="track-title">Notch64 - Neon Drift</h3>
+                    <p class="track-tags">#synthwave, #electronic</p>
+                </div>
+                <div class="track-player">
+                    <!-- {{-- dynamic: audio player --}} -->
+                    <button class="play-btn" aria-label="Play">&#9654;</button>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+            </div>
+            <a href="#" class="track-action btn-action">Download &#8595;</a>
+        </article>
+
+        <hr class="track-divider">
+
+        <!-- Track Card 5 -->
+        <article class="track-card">
+            <div class="track-artwork">
+                <!-- {{-- dynamic: album art --}} -->
+                <div class="artwork-placeholder"></div>
+            </div>
+            <div class="track-info">
+                <div class="track-meta">
+                    <h3 class="track-title">Notch64 - Midnight Protocol</h3>
+                    <p class="track-tags">#lofi, #chill</p>
+                </div>
+                <div class="track-player">
+                    <!-- {{-- dynamic: audio player --}} -->
+                    <button class="play-btn" aria-label="Play">&#9654;</button>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+            </div>
+            <a href="#" class="track-action btn-action">Subscribe &#8599;</a>
+        </article>
+
+        <!-- Pagination -->
+        <!-- {{-- dynamic: pagination links from Laravel paginator --}} -->
+        <nav class="pagination" aria-label="Track pagination">
+            <a href="#" class="page-btn page-btn--prev" aria-label="Previous page">&larr;</a>
+            <a href="#" class="page-btn active">1</a>
+            <a href="#" class="page-btn">2</a>
+            <a href="#" class="page-btn">3</a>
+            <span class="page-ellipsis">&hellip;</span>
+            <a href="#" class="page-btn">12</a>
+            <a href="#" class="page-btn page-btn--next" aria-label="Next page">&rarr;</a>
+        </nav>
+    </section>
+
+    <!-- Music Packs & Latest Video -->
+    <section class="packs-video">
+
+        <!-- Left: Music Packs -->
+        <div class="packs-col">
+            <h2 class="packs-title">Music Packs</h2>
+
+            <!-- {{-- dynamic: pack items from Laravel --}} -->
+            <div class="pack-item">
+                <div class="pack-artwork">
+                    <div class="artwork-placeholder artwork-placeholder--sm"></div>
+                </div>
+                <div class="pack-info">
+                    <h3 class="pack-name">G-Funk Kit Vol. 1</h3>
+                    <a href="#" class="pack-link">Download &#8595;</a>
+                </div>
+            </div>
+
+            <div class="pack-item">
+                <div class="pack-artwork">
+                    <div class="artwork-placeholder artwork-placeholder--sm"></div>
+                </div>
+                <div class="pack-info">
+                    <h3 class="pack-name">Chiptune Drum Kit</h3>
+                    <a href="#" class="pack-link pack-link--patron">Patreon Only &#8599;</a>
+                </div>
+            </div>
+
+            <div class="pack-item">
+                <div class="pack-artwork">
+                    <div class="artwork-placeholder artwork-placeholder--sm"></div>
+                </div>
+                <div class="pack-info">
+                    <h3 class="pack-name">Lo-Fi Sample Pack Vol. 2</h3>
+                    <a href="#" class="pack-link">Download &#8595;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Latest Video -->
+        <div class="video-col">
+            <h2 class="packs-title">Latest Video</h2>
+            <!-- {{-- dynamic: YouTube embed URL from Laravel --}} -->
+            <div class="video-embed">
+                <iframe
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    title="Latest video by Notch64"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p class="footer-copy">ItsNotch.com &copy; 2026</p>
+            <p class="footer-credit">website by fullstackhoward</p>
+        </div>
+        <div class="footer-landscape">
+            <img src="img/n64-landscape.png" alt="Notch64 pixel art landscape">
+        </div>
+    </footer>
+
+    </div><!-- /.gradient-wrap -->
+</body>
+</html>
