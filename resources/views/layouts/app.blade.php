@@ -96,7 +96,7 @@
                 <img src="{{ asset('img/sc.svg') }}" alt="SoundCloud">
             </a>
         </nav>
-        <p class="social-tagline">Instrumentals &ndash; SFX &ndash; Indents &ndash; Music Kits &ndash; Pixelwave</p>
+        <p class="social-tagline social-tagline--services">Instrumentals - Loops - Indents - Kits - Pixelwave</p>
     </section>
 
     @yield('content')
