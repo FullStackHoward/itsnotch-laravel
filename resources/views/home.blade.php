@@ -18,6 +18,15 @@
                 </div>
             </div>
             <div class="filter-group">
+                <span class="filter-label">Type</span>
+                <div class="pills">
+                    <a href="{{ request()->fullUrlWithQuery(['type' => null, 'page' => null]) }}" class="pill pill--type {{ request('type') ? '' : 'active' }}">All</a>
+                    @foreach($types as $t)
+                        <a href="{{ request()->fullUrlWithQuery(['type' => $t, 'page' => null]) }}" class="pill pill--type {{ request('type') === $t ? 'active' : '' }}">{{ $t }}</a>
+                    @endforeach
+                </div>
+            </div>
+            <div class="filter-group">
                 <span class="filter-label">Sub-Genre</span>
                 <div class="pills">
                     <a href="{{ request()->fullUrlWithQuery(['subgenre' => null, 'page' => null]) }}" class="pill pill--subgenre {{ request('subgenre') ? '' : 'active' }}">All</a>
@@ -32,15 +41,6 @@
                     <a href="{{ request()->fullUrlWithQuery(['mood' => null, 'page' => null]) }}" class="pill pill--mood {{ request('mood') ? '' : 'active' }}">All</a>
                     @foreach($moods as $m)
                         <a href="{{ request()->fullUrlWithQuery(['mood' => $m, 'page' => null]) }}" class="pill pill--mood {{ request('mood') === $m ? 'active' : '' }}">{{ $m }}</a>
-                    @endforeach
-                </div>
-            </div>
-            <div class="filter-group">
-                <span class="filter-label">Type</span>
-                <div class="pills">
-                    <a href="{{ request()->fullUrlWithQuery(['type' => null, 'page' => null]) }}" class="pill pill--type {{ request('type') ? '' : 'active' }}">All</a>
-                    @foreach($types as $t)
-                        <a href="{{ request()->fullUrlWithQuery(['type' => $t, 'page' => null]) }}" class="pill pill--type {{ request('type') === $t ? 'active' : '' }}">{{ $t }}</a>
                     @endforeach
                 </div>
             </div>
