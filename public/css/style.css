@@ -122,6 +122,9 @@ body {
         #FFAB63 90%,
         #FFAB63 100%
     );
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ===== Social Section ===== */
@@ -678,6 +681,7 @@ body {
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    margin-top: auto;
 }
 
 .footer-text {
