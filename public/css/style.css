@@ -210,6 +210,10 @@ body {
         text-align: center;
     }
 
+    .track-info {
+        width: 100%;
+    }
+
     .track-action {
         align-self: center;
     }
@@ -815,6 +819,12 @@ body {
     white-space: nowrap;
     text-transform: uppercase;
     opacity: 1;
+    transition: font-size 0.25s ease;
+}
+
+.artwork-wrap:hover .overlay-brand,
+.artwork-wrap:focus-within .overlay-brand {
+    font-size: 1.85rem;
 }
 
 .overlay-brand sup {

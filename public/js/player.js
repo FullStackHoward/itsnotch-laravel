@@ -5,7 +5,7 @@
     var activeBtn = null;
 
     var ICON_PLAY = '\u25B6';   // ▶
-    var ICON_PAUSE = '\u23F8';  // ⏸
+    var ICON_PAUSE = '\u23F8\uFE0E';  // ⏸︎ (text style, not emoji)
 
     function resetButton(btn) {
         if (!btn) return;
