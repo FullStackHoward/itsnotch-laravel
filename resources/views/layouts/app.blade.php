@@ -101,6 +101,8 @@
 
     @yield('content')
 
+    </div><!-- /.gradient-wrap -->
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-text">
@@ -117,8 +119,6 @@
             <img src="{{ asset('img/n64-landscape.png') }}" alt="Notch64 pixel art landscape">
         </div>
     </footer>
-
-    </div><!-- /.gradient-wrap -->
 
     <script src="{{ asset('js/player.js') }}"></script>
 </body>
