@@ -68,8 +68,6 @@
             <div class="clouds-track">
                 <img src="{{ asset('img/cloudstrip.svg') }}" alt="" class="cloud-strip" aria-hidden="true">
                 <img src="{{ asset('img/cloudstrip.svg') }}" alt="" class="cloud-strip" aria-hidden="true">
-                <img src="{{ asset('img/cloudstrip.svg') }}" alt="" class="cloud-strip" aria-hidden="true">
-                <img src="{{ asset('img/cloudstrip.svg') }}" alt="" class="cloud-strip" aria-hidden="true">
             </div>
         </div>
     </section>
@@ -121,5 +119,40 @@
     </div><!-- /.gradient-wrap -->
 
     <script src="{{ asset('js/player.js') }}"></script>
+    <script>
+    (function () {
+        var track = document.querySelector('.clouds-track');
+        if (!track) return;
+
+        var strip = track.querySelector('.cloud-strip');
+        var stripWidth = strip.offsetWidth;
+
+        // Clone strips until track is at least 3x the screen width
+        while (track.scrollWidth < window.innerWidth * 3) {
+            var clone = strip.cloneNode(true);
+            track.appendChild(clone);
+        }
+
+        var totalWidth = track.scrollWidth / 2;
+        var pos = 0;
+        var speed = 0.5; // pixels per frame — adjust for speed
+
+        function animate() {
+            pos += speed;
+            if (pos >= totalWidth) {
+                pos = 0;
+            }
+            track.style.transform = 'translateX(-' + pos + 'px)';
+            requestAnimationFrame(animate);
+        }
+
+        // Wait for images to load so offsetWidth is accurate
+        strip.addEventListener('load', function () {
+            stripWidth = strip.offsetWidth;
+        });
+
+        requestAnimationFrame(animate);
+    })();
+    </script>
 </body>
 </html>

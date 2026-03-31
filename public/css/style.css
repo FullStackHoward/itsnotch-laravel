@@ -91,7 +91,6 @@ body {
 .clouds-track {
     display: flex;
     width: max-content;
-    animation: scroll-clouds 60s linear infinite;
 }
 
 .cloud-strip {
@@ -101,18 +100,6 @@ body {
     /* Negative margin creates the 10px overlap */
     margin-right: -10px;
     flex-shrink: 0;
-}
-
-@keyframes scroll-clouds {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        /* Move by exactly 2 strip widths (accounting for overlaps) so the loop is seamless.
-           Each strip is 600.5px wide, minus 10px overlap = ~590.5px effective.
-           We shift by 2 strips worth so the second half mirrors the first. */
-        transform: translateX(calc(-600.5px * 2 + 20px));
-    }
 }
 
 /* ===== Gradient Wrapper ===== */
