@@ -18,6 +18,10 @@ jobs:
           script_stop: true
           script: |
             cd ~/public_html/itsnotch.com
+            # Fires on success or failure, so a broken step can never strand
+            # the site in maintenance mode. Does not mask the exit code, so a
+            # failed deploy still reports red in Actions.
+            trap '/opt/cpanel/ea-php83/root/usr/bin/php artisan up' EXIT
             git reset --hard HEAD
             git pull origin main
             command -v ffmpeg >/dev/null 2>&1 || echo "WARNING: ffmpeg not found on PATH, waveform generation will fail"
@@ -27,4 +31,3 @@ jobs:
             npm run build
             /opt/cpanel/ea-php83/root/usr/bin/php artisan migrate --force
             /opt/cpanel/ea-php83/root/usr/bin/php artisan optimize
-            /opt/cpanel/ea-php83/root/usr/bin/php artisan up
