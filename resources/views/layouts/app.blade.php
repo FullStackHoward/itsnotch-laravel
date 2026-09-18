@@ -55,7 +55,7 @@
     <meta name="theme-color" content="@yield('theme_color', '#FFAB63')">
 
     <!-- Styles & Fonts -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="@versioned('css/style.css')">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
@@ -124,7 +124,7 @@
 
     </div><!-- /.gradient-wrap -->
 
-    <script src="{{ asset('js/player.js') }}"></script>
+    <script src="@versioned('js/player.js')"></script>
     <script>
     (function () {
         var track = document.querySelector('.clouds-track');

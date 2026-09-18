@@ -123,5 +123,5 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('js/track-page.js') }}"></script>
+<script src="@versioned('js/track-page.js')"></script>
 @endpush
