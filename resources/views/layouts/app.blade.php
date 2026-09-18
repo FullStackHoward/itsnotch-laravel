@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta -->
-    <title>It's Notch! | Music Production by Notch64</title>
-    <meta name="description" content="Music production by Notch64. Instrumentals, music kits, audio logos, and indents for gaming, TV, and film. Creator of Pixelwave — a fusion of Chiptune, UK Drill, and Boom Bap. Based in the DMV.">
+    <title>{!! $__env->yieldContent('title') ?: "It's Notch! | Music Production by Notch64" !!}</title>
+    <meta name="description" content="@yield('meta_description', 'Music production by Notch64. Instrumentals, music kits, audio logos, and indents for gaming, TV, and film. Creator of Pixelwave — a fusion of Chiptune, UK Drill, and Boom Bap. Based in the DMV.')">
     <meta name="keywords" content="Notch64, ItsNotch, music producer, instrumentals, music kits, audio logo, music indent, sync licensing, gaming music, TV music, film scoring, Pixelwave, chiptune beats, UK drill, boom bap, DMV producer, Washington DC, Maryland, Virginia, free beats, beat store, music for content creators">
     <meta name="author" content="Notch64">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://itsnotch.com">
+    <link rel="canonical" href="@yield('canonical', 'https://itsnotch.com')">
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://itsnotch.com">
-    <meta property="og:title" content="It's Notch! | Music Production by Notch64">
-    <meta property="og:description" content="Instrumentals, music kits, audio logos, and indents for gaming, TV, and film. Creator of Pixelwave. Based in the DMV.">
-    <meta property="og:image" content="https://itsnotch.com/img/og-image.png">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:url" content="@yield('og_url', 'https://itsnotch.com')">
+    <meta property="og:title" content="{!! $__env->yieldContent('og_title') ?: "It's Notch! | Music Production by Notch64" !!}">
+    <meta property="og:description" content="@yield('og_description', 'Instrumentals, music kits, audio logos, and indents for gaming, TV, and film. Creator of Pixelwave. Based in the DMV.')">
+    <meta property="og:image" content="@yield('og_image', 'https://itsnotch.com/img/og-image.png')">
+@hasSection('og_image_width')
+    <meta property="og:image:width" content="@yield('og_image_width')">
+    <meta property="og:image:height" content="@yield('og_image_height')">
+@else
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+@endif
     <meta property="og:site_name" content="ItsNotch.com">
     <meta property="og:locale" content="en_US">
 
@@ -28,9 +33,9 @@
     <meta name="twitter:site" content="@itsnotch64">
     <meta name="twitter:creator" content="@itsnotch64">
     <meta name="twitter:url" content="https://x.com/itsnotch64">
-    <meta name="twitter:title" content="It's Notch! | Music Production by Notch64">
-    <meta name="twitter:description" content="Instrumentals, music kits, audio logos, and indents for gaming, TV, and film. Creator of Pixelwave. Based in the DMV.">
-    <meta name="twitter:image" content="https://itsnotch.com/img/og-image.png">
+    <meta name="twitter:title" content="{!! $__env->yieldContent('og_title') ?: "It's Notch! | Music Production by Notch64" !!}">
+    <meta name="twitter:description" content="@yield('og_description', 'Instrumentals, music kits, audio logos, and indents for gaming, TV, and film. Creator of Pixelwave. Based in the DMV.')">
+    <meta name="twitter:image" content="@yield('og_image', 'https://itsnotch.com/img/og-image.png')">
 
     <!-- Geographic -->
     <meta name="geo.region" content="US-MD">
@@ -47,13 +52,14 @@
     </script>
 
     <!-- Theme -->
-    <meta name="theme-color" content="#FFAB63">
+    <meta name="theme-color" content="@yield('theme_color', '#FFAB63')">
 
     <!-- Styles & Fonts -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+@stack('head')
 </head>
 <body>
     <!-- Hero Section -->
@@ -154,5 +160,6 @@
         requestAnimationFrame(animate);
     })();
     </script>
+@stack('scripts')
 </body>
 </html>

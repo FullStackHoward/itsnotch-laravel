@@ -19,6 +19,8 @@ class Track extends Model
         'extracted_color',
         'audio_path',
         'preview_path',
+        'duration_seconds',
+        'waveform_peaks',
         'is_free',
         'patreon_url',
         'active',
@@ -26,6 +28,8 @@ class Track extends Model
 
     protected $casts = [
         'is_free' => 'boolean',
+        'duration_seconds' => 'float',
+        'waveform_peaks' => 'array',
         'active' => 'boolean',
         'genre' => CommaSeparated::class,
         'subgenre' => CommaSeparated::class,

@@ -1,16 +1,20 @@
 <article class="track-card">
     <div class="track-artwork">
-        <div class="artwork-wrap" tabindex="0">
+        <div class="artwork-wrap">
             <div class="artwork-overlay" style="background-color: {{ $track->extracted_color ?? '#333333' }}">
                 <span class="overlay-brand">NOTCH<sup>64</sup></span>
             </div>
             <img src="{{ asset('img/cover-peel.png') }}" alt="" class="cover-peel" aria-hidden="true">
             <img src="{{ asset('storage/' . $track->cover_art_path) }}" alt="{{ $track->title }}" class="artwork-img">
+            {{-- Sits inside .artwork-wrap so the existing :focus-within grow
+                 rules still fire, and replaces the wrap's old tabindex so the
+                 card keeps a single tab stop for the cover. --}}
+            <a href="{{ route('tracks.show', $track) }}" class="artwork-link" aria-label="{{ $track->title }} — track page"></a>
         </div>
     </div>
     <div class="track-info">
         <div class="track-meta">
-            <h3 class="track-title">Notch64 - {{ $track->title }}</h3>
+            <h3 class="track-title"><a href="{{ route('tracks.show', $track) }}" class="track-title-link">Notch64 - {{ $track->title }}</a></h3>
             <p class="track-tags">
                 @foreach($track->genre as $g)
                     <a href="{{ request()->fullUrlWithQuery(['genre' => $g, 'page' => null]) }}" class="tag-link">#{{ strtolower($g) }}</a>

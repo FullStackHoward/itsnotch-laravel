@@ -1,0 +1,30 @@
+name: Deploy ItsNotch.com
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: true
+          script: |
+            cd ~/public_html/itsnotch.com
+            git reset --hard HEAD
+            git pull origin main
+            command -v ffmpeg >/dev/null 2>&1 || echo "WARNING: ffmpeg not found on PATH, waveform generation will fail"
+            /opt/cpanel/ea-php83/root/usr/bin/php artisan down --render="errors::503" || true
+            /opt/cpanel/ea-php83/root/usr/bin/php $(which composer) install --no-dev --optimize-autoloader --no-interaction
+            npm ci
+            npm run build
+            /opt/cpanel/ea-php83/root/usr/bin/php artisan migrate --force
+            /opt/cpanel/ea-php83/root/usr/bin/php artisan optimize
+            /opt/cpanel/ea-php83/root/usr/bin/php artisan up
