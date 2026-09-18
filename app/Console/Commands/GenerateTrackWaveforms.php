@@ -27,20 +27,27 @@ class GenerateTrackWaveforms extends Command
         }
 
         $bar = $this->output->createProgressBar($tracks->count());
-        $generated = 0;
-        $skipped = 0;
+        $updated = 0;
+        $unchanged = 0;
+        $failed = [];
 
         foreach ($tracks as $track) {
             // Call the observer directly: $track->save() on an otherwise
             // unchanged model leaves is_free/audio_path/preview_path clean,
             // so updating() would skip it.
-            $observer->forceGenerateWaveform($track);
+            $hasPeaks = $observer->forceGenerateWaveform($track);
+            $changed = $track->isDirty(['duration_seconds', 'waveform_peaks']);
 
-            if ($track->isDirty(['duration_seconds', 'waveform_peaks'])) {
+            if ($changed) {
                 $track->save();
-                $generated++;
+            }
+
+            if (!$hasPeaks) {
+                $failed[] = $track->title;
+            } elseif ($changed) {
+                $updated++;
             } else {
-                $skipped++;
+                $unchanged++;
             }
 
             $bar->advance();
@@ -48,7 +55,21 @@ class GenerateTrackWaveforms extends Command
 
         $bar->finish();
         $this->newLine();
-        $this->info($generated . ' track(s) updated, ' . $skipped . ' skipped (no audio, or ffmpeg failed).');
+
+        $this->info($updated . ' updated, ' . $unchanged . ' already current, ' . count($failed) . ' with no waveform.');
+
+        if ($failed !== []) {
+            $this->newLine();
+            $this->warn('No waveform could be generated for:');
+
+            foreach ($failed as $title) {
+                $this->line('  - ' . $title);
+            }
+
+            $this->newLine();
+            $this->warn('These tracks either have no audio/preview file, or ffmpeg could not decode them.');
+            $this->warn('Check that ffmpeg is installed and on PATH: ' . config('media.ffmpeg_path', 'ffmpeg') . ' -version');
+        }
 
         return self::SUCCESS;
     }

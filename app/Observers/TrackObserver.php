@@ -38,10 +38,15 @@ class TrackObserver
      * Regenerate peaks regardless of what is dirty. Used by the
      * tracks:generate-waveforms backfill command, where the model itself
      * has not changed and the dirty check in updating() would skip it.
+     *
+     * Returns whether the track ended up with usable peaks, so the command
+     * can tell a genuine failure apart from a track that simply has no audio.
      */
-    public function forceGenerateWaveform(Track $track): void
+    public function forceGenerateWaveform(Track $track): bool
     {
         $this->generateWaveform($track);
+
+        return !empty($track->waveform_peaks);
     }
 
     protected function extractColor(Track $track): void
